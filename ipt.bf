@@ -1,0 +1,1 @@
+,>++++++++++[<--->-] <--. # Read a lowercase character from keyboard-input and convert it to uppercase
