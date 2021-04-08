@@ -14,7 +14,9 @@ BrainFuck是一个神奇的语言，仅仅使用几种符号、简洁的语法�
 
 [**ZhiHu**](https://www.zhihu.com/question/20002558/answer/13625765)
 
+可视化：
 
+[**Brainfuck Visualizer**](http://fatiherikli.github.io/brainfuck-visualizer/)
 
 ## 关于PyBrainFuck的用法
 
