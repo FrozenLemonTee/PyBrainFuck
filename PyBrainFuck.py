@@ -57,7 +57,7 @@ def inputsCmd() -> str:
     return input()
 
 
-def outputStream(opt: str, add: int, src: List[str], i, j) -> str:
+def outputStream(opt: str, add: int, src: List[str], i: int, j: int) -> str:
     try:
         res = opt + chr(add)
         return res
