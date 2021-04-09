@@ -1,13 +1,14 @@
 """
 BrainFuck Compiler
 author: @FrozenLemonTee
-version: 1.0
+version: 1.1
 """
 
 import ctypes
 import argparse
 from typing import List, NoReturn, Text
 
+version = "1.1"
 colour = {"red": 0x0c, "blue": 0x0b}
 errors_code = {"notBfFile": 1, "canNotOpen": 2, "bracketsMismatch": 3, "ASCIIConvertingError": 4, "OutOfBound": 5}
 
@@ -23,12 +24,12 @@ class myArgumentParser(argparse.ArgumentParser):
 
 def cmdParse() -> str:
     try:
-        des = "BrainFuck Compiler PyBrainFuck@1.0  By @FrozenLemonTee"
+        des = "BrainFuck Compiler PyBrainFuck@{0}  By @FrozenLemonTee".format(version)
         parser = myArgumentParser(description=des)
         parser.add_argument("file_name", help="the path of brainFuck file(.bf)")
         return parser.parse_args().file_name
     except ArgumentParserError:
-        printCmd("[PyBrainFuck@1.0] usage:python PyBrainFuck.py file_name", color=colour["blue"])
+        printCmd("[PyBrainFuck@{0}] usage:python PyBrainFuck.py file_name".format(version), color=colour["blue"])
         printError(error_info="Wrong usage of the command")
 
 
@@ -53,7 +54,7 @@ def printCmd(*info: str, color: int = 0x07, sep: str = ' ', end: str = '\n') -> 
 
 
 def inputsCmd() -> str:
-    printCmd("[PyBrainFuck@1.0] input>>>", color=colour["blue"], end="")
+    printCmd("[PyBrainFuck@{0}] input>>>".format(version), color=colour["blue"], end="")
     return input()
 
 
@@ -67,7 +68,7 @@ def outputStream(opt: str, add: int, src: List[str], i: int, j: int) -> str:
 
 
 def outputsCmd(opt: str) -> str:
-    printCmd("[PyBrainFuck@1.0] output>>>", color=colour["blue"], end="")
+    printCmd("[PyBrainFuck@{0}] output>>>".format(version), color=colour["blue"], end="")
     print(opt)
     return ""
 
@@ -75,7 +76,7 @@ def outputsCmd(opt: str) -> str:
 def printError(i: int = 0, j: int = 0, src=None, error_info: str = "", error_code: int = -1) -> NoReturn:
     if src is None:
         src = [""]
-    printCmd("[PyBrainFuck@1.0] error:", color=colour["red"], end="")
+    printCmd("[PyBrainFuck@{0}] error:".format(version), color=colour["red"], end="")
     printCmd(error_info, color=colour["red"], end="")
     if error_code >= 3:
         if error_code > 3:
@@ -99,6 +100,8 @@ def check(src: List[str]) -> NoReturn:
     st = []
     for i in range(0, len(src)):
         for j in range(0, len(src[i])):
+            if src[i][j] == "#":
+                break
             if src[i][j] == "[":
                 st.append([i, j])
                 continue
